@@ -1,11 +1,26 @@
-import React from 'react';
-import './Home.css';
+import React, { Fragment } from 'react';
+import { AppBody } from './styled'
+import Header from '../../Components/Header'
 
-function Home() {
+import {
+  BrowserRouter,
+  Routes,
+  Route
+} from "react-router-dom";
+
+function Home () {
   return (
-    <div className="home">
-      <h1>This is home</h1>
-    </div>
+    <Fragment >
+      <BrowserRouter>
+        <Header />
+        <AppBody >
+          <h1>This is a body</h1>
+          <Routes>
+            <Route path="/" exact />
+          </Routes>
+        </AppBody>
+      </BrowserRouter>
+    </Fragment>
   );
 }
 
