@@ -9,21 +9,19 @@ import { AccessTime, Search, HelpOutline } from '@mui/icons-material'
 
 function Header () {
   return (
-    <div className="header">
-      <HeaderContainer >
-        <HeaderLeft >
-          <HeaderAvatar />
-          <AccessTime />
-        </HeaderLeft>
-        <HeaderSearch >
-          <Search />
-          <input placeholder='Seach' type="text" />
-        </HeaderSearch>
-        <HeaderRight >
-          <HelpOutline />
-        </HeaderRight>
-      </HeaderContainer>
-    </div>
+    <HeaderContainer id='header'>
+      <HeaderLeft >
+        <HeaderAvatar />
+        <AccessTime />
+      </HeaderLeft>
+      <HeaderSearch >
+        <Search />
+        <input placeholder='Seach' type="text" />
+      </HeaderSearch>
+      <HeaderRight >
+        <HelpOutline />
+      </HeaderRight>
+    </HeaderContainer>
   )
 }
 

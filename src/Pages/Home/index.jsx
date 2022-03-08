@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
-import { AppBody } from './styled'
-import Header from '../../Components/Header'
+import { AppBody } from './styled';
+import Header from '../../Components/Header';
+import Sidebar from '../../Components/Sidebar';
 
 import {
   BrowserRouter,
@@ -13,8 +14,8 @@ function Home () {
     <Fragment >
       <BrowserRouter>
         <Header />
-        <AppBody >
-          <h1>This is a body</h1>
+        <AppBody id='app-body'>
+          <Sidebar />
           <Routes>
             <Route path="/" exact />
           </Routes>
