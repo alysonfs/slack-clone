@@ -8,9 +8,13 @@ import {
   FiberManualRecord, Drafts, BookmarkBorder, FileCopy, ExpandLess, Add
 } from '@mui/icons-material'
 import SidebarOptions from '../SidebarOptions'
+import { db, collection } from '../../app/firebase'
 
+import { useCollection } from 'react-firebase-hooks/firestore'
 
 function Sidebar () {
+  const [channels] = useCollection(collection(db, "rooms"))
+
   return (
     <SidebarContainer id='sidebar' >
       <SidebarHeader>
@@ -35,7 +39,10 @@ function Sidebar () {
         <hr />
         <SidebarOptions Icon={ExpandMore} title='Channels' />
         <hr />
-        <SidebarOptions Icon={Add} title='Add Channel' />
+        <SidebarOptions Icon={Add} title='Add Channel' addChannelOption />
+        {channels?.docs.map(doc => (
+          <SidebarOptions key={doc.id} id={doc.id} title={doc.data().name} />
+        ))}
       </SidebarItems>
     </SidebarContainer>
   )
