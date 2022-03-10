@@ -2,15 +2,23 @@ import React from 'react'
 import { LoginContainer, LoginInnerConteiner } from './styled'
 import { Button } from '@mui/material'
 import { auth, provider, signInWithPopup } from '../../app/firebase'
+import { useDispatch } from 'react-redux'
+import { login } from '../../app/features/authSlice'
 
 
 function Login () {
+  const dispatch = useDispatch()
 
   const signIn = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     signInWithPopup(auth, provider)
       .then(({ user }) => {
-        console.log(user)
+        dispatch(login({
+          id: user.uid,
+          name: user.displayName,
+          email: user.email,
+          photoUrl: user.photoURL
+        }))
       })
       .catch(error => console.log(error))
   }
