@@ -29,7 +29,6 @@ function Chat () {
   )
 
   useEffect(() => {
-    console.log(chatRef)
     chatRef?.current?.scrollIntoView({
       behavior: "smooth"
     })
