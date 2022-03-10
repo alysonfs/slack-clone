@@ -11,18 +11,21 @@ import SidebarOptions from '../SidebarOptions'
 import { db, collection } from '../../app/firebase'
 
 import { useCollection } from 'react-firebase-hooks/firestore'
+import { useSelector } from 'react-redux'
+import { selectUser } from '../../app/features/authSlice'
 
 function Sidebar () {
   const [channels] = useCollection(collection(db, "rooms"))
+  const user = useSelector(selectUser)
 
   return (
     <SidebarContainer id='sidebar' >
       <SidebarHeader>
         <SidebarInfo>
-          <h2>Moldato</h2>
+          <h2>Moldato Slack</h2>
           <h3>
             <FiberManualRecord />
-            Alyson Souza
+            {user?.name || 'loading..'}
           </h3>
         </SidebarInfo>
         <Create />

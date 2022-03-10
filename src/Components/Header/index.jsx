@@ -9,9 +9,12 @@ import { AccessTime, Search, HelpOutline } from '@mui/icons-material'
 import { signOut, auth } from '../../app/firebase'
 import { useDispatch } from 'react-redux'
 import { logout } from '../../app/features/authSlice'
+import { useSelector } from 'react-redux'
+import { selectUser } from '../../app/features/authSlice'
 
 function Header () {
   const dispatch = useDispatch()
+  const user = useSelector(selectUser)
 
   const signoutApp = () => {
     signOut(auth)
@@ -23,7 +26,9 @@ function Header () {
   return (
     <HeaderContainer id='header'>
       <HeaderLeft >
-        <HeaderAvatar 
+        <HeaderAvatar
+          src={user?.photoUrl}
+          alt={user?.name}
           onClick={signoutApp}
         />
         <AccessTime />

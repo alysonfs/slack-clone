@@ -2,9 +2,12 @@ import React, { useState } from 'react';
 import { ChatInputContainer } from './styled';
 import { Button } from '@mui/material';
 import { db, collection, doc, serverTimestamp, addDoc } from '../../app/firebase'
+import { useSelector } from 'react-redux';
+import { selectUser } from '../../app/features/authSlice';
 
 function ChatInput ({ channelName = 'ROOM', channelId, chatRef }) {
   const [input, setInput] = useState('');
+  const user = useSelector(selectUser);
 
   const sendMessage = async (e) => {
     e.preventDefault();
@@ -17,8 +20,8 @@ function ChatInput ({ channelName = 'ROOM', channelId, chatRef }) {
     addDoc(collection(channelRef, 'messages'), {
       message: input,
       timestamp: serverTimestamp(),
-      user: 'Alyson Felipe',
-      userImage: 'https://miro.medium.com/fit/c/1360/1360/0*robnC9LB12ZCFjj3'
+      user: user?.name,
+      userImage: user?.photoUrl
     })
       .then(() => {
         setInput('')
