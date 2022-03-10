@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { Fragment, useEffect, useRef } from 'react';
 import {
   ChatContainer, Header, ChatBottom,
   HeaderLeft, HeaderRight, ChatMessages,
@@ -37,33 +37,37 @@ function Chat () {
 
   return (
     <ChatContainer id='chat' >
-      <Header>
-        <HeaderLeft>
-          <h4><strong>#{roomDetails?.data().name || 'ROOM'}</strong></h4>
-          <StarBorderOutlined />
-        </HeaderLeft>
-        <HeaderRight>
-          <p>
-            <InfoOutlined /> Details
-          </p>
-        </HeaderRight>
-      </Header>
-      <ChatMessages>
-        {roomMessages?.docs.map(doc => (
-          <Message
-            key={doc?.id}
-            message={doc?.data().message}
-            user={doc?.data().user}
-            userImage={doc?.data().userImage}
-            time={new Date(doc?.data().timestamp?.seconds * 1000).toUTCString()}
-          />
-        ))}
-        <ChatBottom ref={chatRef} />
-      </ChatMessages>
-      <ChatInput
-        chatRef={chatRef}
-        channelName={roomDetails?.data().name}
-        channelId={roomId} />
+      {roomDetails && (
+        <Fragment>
+          <Header>
+            <HeaderLeft>
+              <h4><strong>#{roomDetails?.data().name || 'ROOM'}</strong></h4>
+              <StarBorderOutlined />
+            </HeaderLeft>
+            <HeaderRight>
+              <p>
+                <InfoOutlined /> Details
+              </p>
+            </HeaderRight>
+          </Header>
+          <ChatMessages>
+            {roomMessages?.docs.map(doc => (
+              <Message
+                key={doc?.id}
+                message={doc?.data().message}
+                user={doc?.data().user}
+                userImage={doc?.data().userImage}
+                time={new Date(doc?.data().timestamp?.seconds * 1000).toUTCString()}
+              />
+            ))}
+            <ChatBottom ref={chatRef} />
+          </ChatMessages>
+          <ChatInput
+            chatRef={chatRef}
+            channelName={roomDetails?.data().name}
+            channelId={roomId} />
+        </Fragment>
+      )}
     </ChatContainer>
   )
 }
