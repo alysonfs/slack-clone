@@ -4,8 +4,8 @@ import {
   HeaderLeft, HeaderRight, ChatMessages,
 } from './styled'
 import { InfoOutlined, StarBorderOutlined } from '@mui/icons-material';
-import ChatInput from '../../Components/ChatInput';
-import Message from '../../Components/Message';
+import ChatInput from '../ChatInput';
+import Message from '../Message';
 
 import { useSelector } from 'react-redux'
 import { selectRoomId } from '../../app/features/appSlice'

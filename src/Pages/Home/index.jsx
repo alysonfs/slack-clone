@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { AppBody } from './styled';
 import Header from '../../Components/Header';
 import Sidebar from '../../Components/Sidebar';
-import Chat from '../Chat';
+import Chat from '../../Components/Chat';
 
 import {
   BrowserRouter,
