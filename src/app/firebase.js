@@ -3,7 +3,7 @@ import {
   getFirestore, collection, addDoc, getDoc, setDoc,
   serverTimestamp, query, orderBy, getDocs, doc
 } from "firebase/firestore";
-import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
+import { GoogleAuthProvider, getAuth, signInWithPopup, signOut } from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBacnNaZ1sj7S7Y2cXxK09sZVje-Z0MKyc",
@@ -20,7 +20,7 @@ const db = getFirestore()
 const provider = new GoogleAuthProvider();
 const auth = getAuth()
 export {
-  app, db, collection, 
+  app, db, collection, signOut,
   addDoc, provider, serverTimestamp,
   query, orderBy, getDocs, setDoc,
   getDoc, doc, auth, signInWithPopup
