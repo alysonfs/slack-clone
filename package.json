@@ -40,5 +40,8 @@
   },
   "resolutions": {
     "styled-components": "^5"
+  },
+  "devDependencies": {
+    "@types/firebase": "^3.2.1"
   }
 }
