@@ -9,29 +9,37 @@ import { auth } from '../../app/firebase';
 import { useDispatch } from 'react-redux';
 import { login } from '../../app/features/authSlice'
 
+
 import {
   BrowserRouter,
   Routes,
   Route
 } from "react-router-dom";
+import Spinner from 'react-spinkit';
 
 function Home () {
   const dispatch = useDispatch()
   const [user, loading] = useAuthState(auth)
   if (user) dispatch(login({
+    id: user.uid,
     name: user.displayName,
     email: user.email,
-    id: user.uid,
     photoUrl: user.photoURL
   }))
 
   if (loading) {
     return (
-      <AppLoading>
-        <AppLoadingContent>
-
+      <Fragment>
+      <AppLoading id='app-loading'>
+        <AppLoadingContent id='app-loading-content'>
+          <img src="https://logosmarcas.net/wp-content/uploads/2020/11/Slack-Logo.png" alt="slack" />
+          <Spinner 
+            name="double-bounce" 
+            color='#0a8d48'
+            fadeIn='none'/>
         </AppLoadingContent>
       </AppLoading>
+      </Fragment>
     )
   }
 

@@ -3,6 +3,7 @@ import styled from 'styled-components'
 export const LoginContainer = styled.div`
   background-color: #f8f8f8;
   height: 100vw;
+  width: 100vw;
   display: grid ;
   place-items: center;
 `;
